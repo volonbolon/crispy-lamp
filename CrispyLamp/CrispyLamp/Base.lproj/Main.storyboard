@@ -21,7 +21,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYM-R8-91G">
                                 <rect key="frame" x="0.0" y="108" width="600" height="443"/>
                                 <connections>
-                                    <segue destination="9lg-fw-MF6" kind="embed" id="qaW-ya-CxP"/>
+                                    <segue destination="9lg-fw-MF6" kind="embed" identifier="embedContainer" id="qaW-ya-CxP"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -75,49 +75,63 @@
             </objects>
             <point key="canvasLocation" x="1145" y="432"/>
         </scene>
-        <!--View Controller-->
+        <!--Container View Controller-->
         <scene sceneID="Y2v-lB-IeF">
             <objects>
-                <viewController id="9lg-fw-MF6" sceneMemberID="viewController">
+                <viewController id="9lg-fw-MF6" customClass="ContainerViewController" customModule="CrispyLamp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rOl-ts-Q1U"/>
+                        <viewControllerLayoutGuide type="bottom" id="Dp5-Cj-7lr"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iqC-FP-cDh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="443"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <segue destination="shI-PI-vAo" kind="custom" customClass="EmptySegue" id="x2T-IC-x8n"/>
-                        <segue destination="ECJ-xd-ZJv" kind="custom" customClass="EmptySegue" id="m9Z-0x-9WJ"/>
+                        <segue destination="shI-PI-vAo" kind="custom" identifier="animalsSegue" customClass="EmptySegue" customModule="CrispyLamp" id="x2T-IC-x8n"/>
+                        <segue destination="ECJ-xd-ZJv" kind="custom" identifier="colorsSegue" customClass="EmptySegue" customModule="CrispyLamp" id="m9Z-0x-9WJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ctd-Zs-ZF9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1957" y="1060.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Animals Table View Controller-->
         <scene sceneID="PpU-Fk-o1U">
             <objects>
-                <tableViewController id="shI-PI-vAo" sceneMemberID="viewController">
+                <tableViewController id="shI-PI-vAo" customClass="AnimalsTableViewController" customModule="CrispyLamp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="YDe-k2-NtR">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nDQ-QV-ciP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="animalsCellIdentifier" textLabel="nJv-sS-TKq" style="IBUITableViewCellStyleDefault" id="nDQ-QV-ciP">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nDQ-QV-ciP" id="Z40-bc-tYI">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nJv-sS-TKq">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="shI-PI-vAo" id="UZU-lW-hhB"/>
-                            <outlet property="delegate" destination="shI-PI-vAo" id="szr-FI-CdX"/>
+                            <outlet property="dataSource" destination="7kT-bc-Z8W" id="cGU-2c-yZs"/>
+                            <outlet property="delegate" destination="7kT-bc-Z8W" id="A6l-ql-XAf"/>
                         </connections>
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PTu-Rc-Hty" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="7kT-bc-Z8W" customClass="AnimalsDataSource" customModule="CrispyLamp" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1647" y="1697"/>
         </scene>
