@@ -12,7 +12,12 @@ struct Constants {
     struct SegueIdentifier {
         static let EmbedContainer = "embedContainer"
     }
+    struct StoryboardIdentifier {
+        static let AnimalsTableViewController = "AnimalsTableViewController"
+        static let ColorsTableViewController = "ColorsTableViewController"
+    }
     struct CellIdentifier {
         static let AnimalsCellIdentifier = "animalsCellIdentifier"
     }
+    
 }
