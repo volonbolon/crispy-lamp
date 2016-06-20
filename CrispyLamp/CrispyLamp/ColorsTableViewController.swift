@@ -31,7 +31,7 @@ class ColorsDataSource:NSObject, UITableViewDataSource {
 
 class ColorsTableViewController: UITableViewController, IdentifiedViewController {
     
-    let identifier: Identifier = Identifier(humanReadable:"Animals", unique:"Animals")
+    let identifier: Identifier = Identifier(humanReadable:"Colors", unique:"Colors")
     
     @IBOutlet var dataSource: AnimalsDataSource!
     
