@@ -29,7 +29,42 @@ protocol IdentifiedViewController {
 
 class ContainerViewController: UIViewController {
     private var transitionInProgress = false
-//    private var childrenViewController:[Identifier:IdentifiedViewController] = [:]
+    
+    private var archivedViewControllers:[[Identifier:IdentifiedViewController]] {
+        get {
+            var values:[[Identifier:IdentifiedViewController]] = []
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            
+            if let animalsVC = storyboard.instantiateViewControllerWithIdentifier(Constants.StoryboardIdentifier.AnimalsTableViewController) as? IdentifiedViewController {
+                let v = [
+                    animalsVC.identifier:animalsVC
+                ]
+                values.append(v)
+            }
+            
+            if let colorsVC = storyboard.instantiateViewControllerWithIdentifier(Constants.StoryboardIdentifier.ColorsTableViewController) as? IdentifiedViewController {
+                let v = [
+                    colorsVC.identifier:colorsVC
+                ]
+                values.append(v)
+            }
+            
+            return values
+        }
+    }
+    
+    var childrenNames:[String] {
+        get {
+            var names:[String] = []
+            for cvc in self.archivedViewControllers {
+                if let i = cvc.keys.first {
+                    names.append(i.humanReadable)
+                }
+            }
+            return names
+        }
+    }
     
     var presentingIdentifier:Identifier!
     
@@ -88,13 +123,10 @@ class ContainerViewController: UIViewController {
     func swap(fromViewController:UIViewController, toViewController:UIViewController) {
         
     }
+
     
-    func childrenNames() -> [String] {
-        var names:[String] = []
-        for cvc in self.childViewControllers where cvc is IdentifiedViewController {
-            names.append((cvc as! IdentifiedViewController).identifier.humanReadable)
-        }
-        return names
-    }
+//    func selectedIdentifierChanged(Int:) {
+//        
+//    }
 
 }
