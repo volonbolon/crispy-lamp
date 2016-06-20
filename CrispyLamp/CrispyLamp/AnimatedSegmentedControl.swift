@@ -63,6 +63,21 @@ import UIKit
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapRecognized))
+        self.addGestureRecognizer(tapGesture)
+        
+        let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized))
+        swipeLeftGesture.direction = [.Left]
+        
+        let swipeRightGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRecognized))
+        swipeRightGesture.direction = [.Right]
+        
+        tapGesture.requireGestureRecognizerToFail(swipeLeftGesture)
+        tapGesture.requireGestureRecognizerToFail(swipeRightGesture)
+        self.addGestureRecognizer(swipeLeftGesture)
+        self.addGestureRecognizer(swipeRightGesture)
+        
         setupView()
     }
     
@@ -116,12 +131,28 @@ import UIKit
         thumbView.layer.cornerRadius = thumbView.frame.height / 2
         
         displayNewSelectedIndex()
-        
     }
     
-    override func beginTrackingWithTouch(touch: UITouch, withEvent event: UIEvent?) -> Bool {
-        
-        let location = touch.locationInView(self)
+    func swipeRecognized(swipeGesture:UISwipeGestureRecognizer) {
+        let direction = swipeGesture.direction
+        switch direction {
+        case UISwipeGestureRecognizerDirection.Left:
+            if self.selectedSegmentIndex > 0 {
+                self.selectedSegmentIndex = self.selectedSegmentIndex - 1
+                self.sendActionsForControlEvents(.ValueChanged)
+            }
+        case UISwipeGestureRecognizerDirection.Right:
+            if self.selectedSegmentIndex < (self.labels.count - 1) {
+                self.selectedSegmentIndex = self.selectedSegmentIndex + 1
+                self.sendActionsForControlEvents(.ValueChanged)
+            }
+        default:
+            break // We don't care
+        }
+    }
+    
+    func tapRecognized(tapGesture:UITapGestureRecognizer) {
+        let location = tapGesture.locationInView(self)
         
         var calculatedIndex : Int?
         for (index, item) in labels.enumerate() {
@@ -135,11 +166,10 @@ import UIKit
             self.selectedSegmentIndex = calculatedIndex!
             sendActionsForControlEvents(.ValueChanged)
         }
-        
-        return false
+
     }
     
-    func displayNewSelectedIndex(){
+    func displayNewSelectedIndex() {
         for l in self.labels {
             l.textColor = unselectedLabelColor
         }
@@ -178,7 +208,7 @@ import UIKit
                 
                 leftConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: mainView, attribute: NSLayoutAttribute.Left, multiplier: 1.0, constant: padding)
                 
-            }else{
+            } else {
                 
                 let prevButton = items[index-1]
                 leftConstraint = NSLayoutConstraint(item: button, attribute: NSLayoutAttribute.Left, relatedBy: NSLayoutRelation.Equal, toItem: prevButton, attribute: NSLayoutAttribute.Right, multiplier: 1.0, constant: padding)
