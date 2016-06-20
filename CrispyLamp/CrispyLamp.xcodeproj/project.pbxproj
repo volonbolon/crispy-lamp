@@ -14,6 +14,7 @@
 		B04ADC2F1D183D990058D23D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04ADC2D1D183D990058D23D /* LaunchScreen.storyboard */; };
 		B04ADC3A1D183D990058D23D /* CrispyLampTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC391D183D990058D23D /* CrispyLampTests.swift */; };
 		B04ADC451D183D990058D23D /* CrispyLampUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC441D183D990058D23D /* CrispyLampUITests.swift */; };
+		B04ADC541D1849570058D23D /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC531D1849570058D23D /* EmptySegue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		B04ADC401D183D990058D23D /* CrispyLampUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CrispyLampUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B04ADC441D183D990058D23D /* CrispyLampUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrispyLampUITests.swift; sourceTree = "<group>"; };
 		B04ADC461D183D990058D23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B04ADC531D1849570058D23D /* EmptySegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		B04ADC231D183D990058D23D /* CrispyLamp */ = {
 			isa = PBXGroup;
 			children = (
+				B04ADC551D184AB10058D23D /* Swapper */,
 				B04ADC241D183D990058D23D /* AppDelegate.swift */,
 				B04ADC261D183D990058D23D /* ViewController.swift */,
 				B04ADC281D183D990058D23D /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				B04ADC461D183D990058D23D /* Info.plist */,
 			);
 			path = CrispyLampUITests;
+			sourceTree = "<group>";
+		};
+		B04ADC551D184AB10058D23D /* Swapper */ = {
+			isa = PBXGroup;
+			children = (
+				B04ADC531D1849570058D23D /* EmptySegue.swift */,
+			);
+			name = Swapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +269,7 @@
 			files = (
 				B04ADC271D183D990058D23D /* ViewController.swift in Sources */,
 				B04ADC251D183D990058D23D /* AppDelegate.swift in Sources */,
+				B04ADC541D1849570058D23D /* EmptySegue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
