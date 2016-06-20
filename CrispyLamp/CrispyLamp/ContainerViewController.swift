@@ -112,7 +112,7 @@ class ContainerViewController: UIViewController {
                 }
             }
         }
-     }
+    }
     
     func swap(fromViewController:UIViewController, toViewController:UIViewController) {
         guard self.transitionInProgress == false else { return }
@@ -129,7 +129,7 @@ class ContainerViewController: UIViewController {
     }
 
     // We are going to change the selector
-    func selectedIdentifierChanged(selector:UISegmentedControl) {
+    func selectedIdentifierChanged(selector:AnimatedSegmentedControl) {
         let i = self.archivedViewControllers[selector.selectedSegmentIndex]
         self.presentingIdentifier = i.identifier
         if let si = SegueIdentifier(identifier: i.identifier) {

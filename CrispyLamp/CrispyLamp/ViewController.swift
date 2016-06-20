@@ -11,7 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     private var containerViewController:ContainerViewController?
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmentedControl: AnimatedSegmentedControl!
     
     func setupSegmentedControl() {
         guard let cvc = self.containerViewController else { return }
@@ -19,10 +19,7 @@ class ViewController: UIViewController {
         self.segmentedControl.addTarget(self.containerViewController, action: #selector(ContainerViewController.selectedIdentifierChanged), forControlEvents: UIControlEvents.ValueChanged)
         
         let names = cvc.childrenNames
-        self.segmentedControl.removeAllSegments()
-        for (i, n) in names.enumerate() {
-            self.segmentedControl.insertSegmentWithTitle(n, atIndex: i, animated: false)
-        }
+        self.segmentedControl.items = names
     }
 
     override func viewDidLoad() {

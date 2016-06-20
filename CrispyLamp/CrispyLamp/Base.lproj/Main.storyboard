@@ -24,33 +24,27 @@
                                     <segue destination="9lg-fw-MF6" kind="embed" identifier="embedContainer" id="qaW-ya-CxP"/>
                                 </connections>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="jxV-me-rnS">
-                                <rect key="frame" x="240" y="72" width="121" height="29"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK5-dp-m43" customClass="AnimatedSegmentedControl" customModule="CrispyLamp" customModuleProvider="target">
+                                <rect key="frame" x="20" y="72" width="560" height="28"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="AK5-dp-m43" secondAttribute="trailing" id="9FY-Gj-BeH"/>
+                            <constraint firstItem="AYM-R8-91G" firstAttribute="top" secondItem="AK5-dp-m43" secondAttribute="bottom" constant="8" id="AV5-dM-MyR"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="AK5-dp-m43" secondAttribute="leading" id="D2h-n6-yJD"/>
                             <constraint firstItem="AYM-R8-91G" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="R2f-oX-jgj"/>
-                            <constraint firstItem="jxV-me-rnS" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="VkV-Rd-LrI"/>
-                            <constraint firstItem="jxV-me-rnS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="Wcr-dn-O08"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="AYM-R8-91G" secondAttribute="bottom" id="ZJ9-f5-mYb"/>
-                            <constraint firstItem="jxV-me-rnS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zua-c8-GZ8"/>
+                            <constraint firstItem="AK5-dp-m43" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="bJv-53-wuJ"/>
+                            <constraint firstItem="AK5-dp-m43" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="enz-td-GCQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AYM-R8-91G" secondAttribute="trailing" constant="-20" id="guw-bb-gKE"/>
                             <constraint firstItem="AYM-R8-91G" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="oL6-Ae-ZkW"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="VkV-Rd-LrI"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="dO4-vr-uXJ"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="jxV-me-rnS" id="jDM-Wv-pxC"/>
+                        <outlet property="segmentedControl" destination="AK5-dp-m43" id="bE4-uN-KUK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

@@ -19,6 +19,7 @@
 		B04ADC451D183D990058D23D /* CrispyLampUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC441D183D990058D23D /* CrispyLampUITests.swift */; };
 		B04ADC541D1849570058D23D /* EmptySegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC531D1849570058D23D /* EmptySegue.swift */; };
 		B04ADC571D184AEF0058D23D /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04ADC561D184AEF0058D23D /* ContainerViewController.swift */; };
+		B04D32B31D18A1350039D0FA /* AnimatedSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04D32B21D18A1350039D0FA /* AnimatedSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		B04ADC461D183D990058D23D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B04ADC531D1849570058D23D /* EmptySegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptySegue.swift; sourceTree = "<group>"; };
 		B04ADC561D184AEF0058D23D /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		B04D32B21D18A1350039D0FA /* AnimatedSegmentedControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			children = (
 				B04ADC531D1849570058D23D /* EmptySegue.swift */,
 				B04ADC561D184AEF0058D23D /* ContainerViewController.swift */,
+				B04D32B21D18A1350039D0FA /* AnimatedSegmentedControl.swift */,
 			);
 			name = Swapper;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B00240F21D185B9B00A75FE9 /* Constants.swift in Sources */,
+				B04D32B31D18A1350039D0FA /* AnimatedSegmentedControl.swift in Sources */,
 				B04ADC271D183D990058D23D /* ViewController.swift in Sources */,
 				B04ADC251D183D990058D23D /* AppDelegate.swift in Sources */,
 				B04ADC571D184AEF0058D23D /* ContainerViewController.swift in Sources */,
