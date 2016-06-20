@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     
     func setupSegmentedControl() {
         guard let cvc = self.containerViewController else { return }
-        //        self.segmentedControl.addTarget(self.containerViewController, action: <#T##Selector#>, forControlEvents: UIControlEvents.ValueChanged)
+        
+        self.segmentedControl.addTarget(self.containerViewController, action: #selector(ContainerViewController.selectedIdentifierChanged), forControlEvents: UIControlEvents.ValueChanged)
         
         let names = cvc.childrenNames
         self.segmentedControl.removeAllSegments()

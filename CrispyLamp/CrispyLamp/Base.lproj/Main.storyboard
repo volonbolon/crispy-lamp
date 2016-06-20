@@ -104,7 +104,7 @@
                     <view key="view" contentMode="scaleToFill" id="iqC-FP-cDh">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="443"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <segue destination="shI-PI-vAo" kind="custom" identifier="animalsSegue" customClass="EmptySegue" customModule="CrispyLamp" id="x2T-IC-x8n"/>
@@ -162,7 +162,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="9nQ-f7-SYH">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="colorsCellIdentifier" id="9nQ-f7-SYH">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9nQ-f7-SYH" id="wZc-iS-ciC">
@@ -172,12 +172,15 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="ECJ-xd-ZJv" id="4kI-mo-rbi"/>
-                            <outlet property="delegate" destination="ECJ-xd-ZJv" id="Pks-tC-J6h"/>
+                            <outlet property="dataSource" destination="zrX-RT-JDx" id="aZ3-hH-xYn"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="dataSource" destination="zrX-RT-JDx" id="td5-6P-PLv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hmu-BR-mGG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="zrX-RT-JDx" customClass="ColorsDataSource" customModule="CrispyLamp" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="2297" y="1697"/>
         </scene>

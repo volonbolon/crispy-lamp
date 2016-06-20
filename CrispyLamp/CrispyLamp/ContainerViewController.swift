@@ -29,25 +29,20 @@ protocol IdentifiedViewController {
 
 class ContainerViewController: UIViewController {
     private var transitionInProgress = false
+    private var animationDirection = UIViewAnimationOptions.TransitionFlipFromRight
     
-    private var archivedViewControllers:[[Identifier:IdentifiedViewController]] {
+    private var archivedViewControllers:[IdentifiedViewController] {
         get {
-            var values:[[Identifier:IdentifiedViewController]] = []
+            var values:[IdentifiedViewController] = []
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             if let animalsVC = storyboard.instantiateViewControllerWithIdentifier(Constants.StoryboardIdentifier.AnimalsTableViewController) as? IdentifiedViewController {
-                let v = [
-                    animalsVC.identifier:animalsVC
-                ]
-                values.append(v)
+                values.append(animalsVC)
             }
             
             if let colorsVC = storyboard.instantiateViewControllerWithIdentifier(Constants.StoryboardIdentifier.ColorsTableViewController) as? IdentifiedViewController {
-                let v = [
-                    colorsVC.identifier:colorsVC
-                ]
-                values.append(v)
+                values.append(colorsVC)
             }
             
             return values
@@ -58,9 +53,8 @@ class ContainerViewController: UIViewController {
         get {
             var names:[String] = []
             for cvc in self.archivedViewControllers {
-                if let i = cvc.keys.first {
-                    names.append(i.humanReadable)
-                }
+                let i = cvc.identifier
+                names.append(i.humanReadable)
             }
             return names
         }
@@ -71,6 +65,16 @@ class ContainerViewController: UIViewController {
     enum SegueIdentifier:String {
         case Colors = "colorsSegue"
         case Animals = "animalsSegue"
+        
+        init?(identifier:Identifier) {
+            if identifier.unique == "Colors" {
+                self = .Colors
+            } else if identifier.unique == "Animals" {
+                self = .Animals
+            } else {
+                return nil
+            }
+        }
     }
     
     override func viewDidLoad() {
@@ -85,48 +89,51 @@ class ContainerViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-//        guard let segueIdentifier = segue.identifier else { return }
-//        if let sid = SegueIdentifier(rawValue: segueIdentifier) {
-//            switch sid {
-//            case .Colors:
-//                print("colors")
-//            case .Animals:
-//                let dvc =
-//            }
-//        }
-        let dvc = segue.destinationViewController
-        if dvc is IdentifiedViewController {
-            let identifier = (dvc as! IdentifiedViewController).identifier
-            guard identifier != self.presentingIdentifier else { return }
-            self.presentingIdentifier = identifier
-            
-            if let fvc = self.childViewControllers.first {
-                self.swap(fvc, toViewController: dvc)
-            } else {
-                self.addChildViewController(dvc)
-                let dv = dvc.view
-                dv.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)
-                self.view.addSubview(dv)
-                dvc.didMoveToParentViewController(self)
+        guard let segueIdentifier = segue.identifier else { return }
+        if let sid = SegueIdentifier(rawValue: segueIdentifier) {
+            let dvc = segue.destinationViewController
+            if dvc is IdentifiedViewController {
+                self.animationDirection = UIViewAnimationOptions.TransitionFlipFromLeft
+                switch sid {
+                case .Colors:
+                    self.swap(self.childViewControllers.first!, toViewController: dvc)
+                case .Animals:
+                    self.animationDirection = UIViewAnimationOptions.TransitionFlipFromRight
+                    if let fvc = self.childViewControllers.first {
+                        self.swap(fvc, toViewController: dvc)
+                    } else {
+                        self.addChildViewController(dvc)
+                        let dv = dvc.view
+                        dv.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height)
+                        self.view.addSubview(dv)
+                        dvc.didMoveToParentViewController(self)
+                    }
+                    
+                }
             }
         }
-        
-        
-        
-//        if self.childrenViewController[identifier] == nil {
-//            self.childrenViewController[identifier] = dvc
-//        }
-//        let tvc = self.childrenViewController[identifier]
-        
      }
     
     func swap(fromViewController:UIViewController, toViewController:UIViewController) {
+        guard self.transitionInProgress == false else { return }
+        self.transitionInProgress = true
         
+        toViewController.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)
+        fromViewController.willMoveToParentViewController(nil)
+        self.addChildViewController(toViewController)
+        self.transitionFromViewController(fromViewController, toViewController: toViewController, duration: 0.5, options:[self.animationDirection, UIViewAnimationOptions.CurveEaseOut], animations:nil) { (finished:Bool) -> Void in
+            fromViewController.removeFromParentViewController()
+            toViewController.didMoveToParentViewController(self)
+            self.transitionInProgress = false
+        }
     }
 
-    
-//    func selectedIdentifierChanged(Int:) {
-//        
-//    }
-
+    // We are going to change the selector
+    func selectedIdentifierChanged(selector:UISegmentedControl) {
+        let i = self.archivedViewControllers[selector.selectedSegmentIndex]
+        self.presentingIdentifier = i.identifier
+        if let si = SegueIdentifier(identifier: i.identifier) {
+            self.performSegueWithIdentifier(si.rawValue, sender: nil)
+        }
+    }
 }

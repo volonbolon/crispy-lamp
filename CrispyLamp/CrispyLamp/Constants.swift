@@ -18,6 +18,7 @@ struct Constants {
     }
     struct CellIdentifier {
         static let AnimalsCellIdentifier = "animalsCellIdentifier"
+        static let ColorsCellIdentifier = "colorsCellIdentifier"
     }
     
 }

@@ -21,7 +21,7 @@ class ColorsDataSource:NSObject, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier.AnimalsCellIdentifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier.ColorsCellIdentifier, forIndexPath: indexPath)
         
         cell.textLabel?.text = names[indexPath.row]
         
@@ -33,7 +33,7 @@ class ColorsTableViewController: UITableViewController, IdentifiedViewController
     
     let identifier: Identifier = Identifier(humanReadable:"Colors", unique:"Colors")
     
-    @IBOutlet var dataSource: AnimalsDataSource!
+    @IBOutlet var dataSource: ColorsDataSource!
     
     override func viewDidLoad() {
         super.viewDidLoad()
