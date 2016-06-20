@@ -108,7 +108,6 @@ class ContainerViewController: UIViewController {
                         self.view.addSubview(dv)
                         dvc.didMoveToParentViewController(self)
                     }
-                    
                 }
             }
         }
@@ -131,9 +130,11 @@ class ContainerViewController: UIViewController {
     // We are going to change the selector
     func selectedIdentifierChanged(selector:AnimatedSegmentedControl) {
         let i = self.archivedViewControllers[selector.selectedSegmentIndex]
-        self.presentingIdentifier = i.identifier
-        if let si = SegueIdentifier(identifier: i.identifier) {
-            self.performSegueWithIdentifier(si.rawValue, sender: nil)
+        if self.presentingIdentifier != i.identifier {
+            self.presentingIdentifier = i.identifier
+            if let si = SegueIdentifier(identifier: i.identifier) {
+                self.performSegueWithIdentifier(si.rawValue, sender: nil)
+            }
         }
     }
 }
