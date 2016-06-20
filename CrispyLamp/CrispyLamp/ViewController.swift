@@ -9,11 +9,25 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var containerViewController:UIViewController?
+    private var containerViewController:ContainerViewController?
     
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    func setupSegmentedControl() {
+        guard let cvc = self.containerViewController else { return }
+        //        self.segmentedControl.addTarget(self.containerViewController, action: <#T##Selector#>, forControlEvents: UIControlEvents.ValueChanged)
+        
+        let names = cvc.childrenNames
+        self.segmentedControl.removeAllSegments()
+        for (i, n) in names.enumerate() {
+            self.segmentedControl.insertSegmentWithTitle(n, atIndex: i, animated: false)
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.setupSegmentedControl()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,7 +38,7 @@ class ViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let identifier = segue.identifier
         if identifier == Constants.SegueIdentifier.EmbedContainer {
-            self.containerViewController = segue.destinationViewController
+            self.containerViewController = (segue.destinationViewController as! ContainerViewController)
         }
     }
 }
